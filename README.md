@@ -12,5 +12,5 @@
 5.Python 2.7
 
 #演示结果
-![image](https://github.com/dreamcity/Spark_Movie_recsys/edit/master/home.png)
-![image](https://github.com/dreamcity/Spark_Movie_recsys/edit/master/recommend.png)
+![image](https://github.com/dreamcity/Spark_Movie_recsys/raw/master/home.png)
+![image](https://github.com/dreamcity/Spark_Movie_recsys/raw/master/recommend.png)
