@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block page_content %}
+	{% if mode  == 0 %}
+		<div class="table-responsive">
+			<h3>Show the Unrated movie list of <a href="{{ url_for('.show_user_f_id',user_id = user_id) }}">User {{ user_id }}</a></h3>	
+		    <table class="table table-hover">
+				<thead>
+					<tr><td>#</th><th>MovieID</th><th>Title</th><th>Genre</th><th>Action</th></tr>
+				</thead>
+				<tbody>
+					{% for movie in movies %}
+					<tr>
+						<td>{{ loop.index + (page - 1) * per_page }}</td>
+						<td><a href="{{ url_for('.show_movie_f_id',movie_id = movie.movie_id) }}">{{ movie.movie_id }}</a></td> 
+						<td><a href="{{ url_for('.show_movie_f_id',movie_id = movie.movie_id) }}">{{ movie.title }}</a></td> 
+						<td>{{ movie.genre }}</td> </td> 
+						<td>
+							<dt><a href="{{ url_for('.update_u_rela_movie',operate= 'edit', user_id=user_id, movie_id = movie.movie_id) }}"><span class="glyphicon glyphicon-edit">rate</span></a></dt>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+		    </table>
+			{{ pagination.info }}
+			{{ pagination.links }}
+		</div>
+	{% else %}
+		<div class="table-responsive">
+			<h3>Show the rated movie list of <a href="{{ url_for('.show_user_f_id',user_id = user_id) }}">User {{ user_id }}</a></h3>		
+		    <table class="table table-hover">
+				<thead>
+					<tr><td>#</th><th>MovieID</th><th>Title</th><th>Genre</th><th>Rate score</th><th>Action</th></tr>
+				</thead>
+				<tbody>
+					{% for movie in movies %}
+					<tr>
+						<td>{{ loop.index + (page - 1) * per_page }}</td>
+						<td><a href="{{ url_for('.show_movie_f_id',movie_id = movie.movie_id) }}">{{ movie.movie_id }}</a></td> 
+						<td><a href="{{ url_for('.show_movie_f_id',movie_id = movie.movie_id) }}">{{ movie.title }}</a></td> 
+						<td>{{ movie.genre }}</td> </td> 
+						<td>{{ movie.rate_score }}</a></td> </td>
+						<td>
+							<dt><a href="{{ url_for('.show_rate_info',user_id = user_id,movie_id = movie.movie_id)}}"><span class="glyphicon glyphicon-search">show</span></a></dt>
+							<dt><a href="{{ url_for('.update_u_rela_movie',operate= 'edit', user_id=user_id, movie_id = movie.movie_id) }}"><span class="glyphicon glyphicon-edit">edit</span></a></dt>
+							<dt><a href="{{ url_for('.update_u_rela_movie',operate= 'delete', user_id=user_id, movie_id = movie.movie_id) }}"><span class="glyphicon glyphicon-remove">delete</span></a></dt>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+		    </table>
+			{{ pagination.info }}
+			{{ pagination.links }}
+		</div>
+	{% endif %}
+  	
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}

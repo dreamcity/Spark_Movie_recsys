@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+  <div class="table-responsive">
+
+  	<h3>Show the rate info of User <a href="{{ url_for('.show_user_f_id',user_id = rate_info.user_id) }}">{{ rate_info.user_id }}</a> to Movie <a href="{{ url_for('.show_movie_f_id',movie_id = rate_info.movie_id) }}">  {{ rate_info.movie_id }}</a></h3>
+    <table class="table table-hover">
+    	<tr>
+		  <td>UserID</td>
+		  <td><a href="{{ url_for('.show_user_f_id',user_id = rate_info.user_id) }}">{{ rate_info.user_id }}</a></td>
+		</tr>
+		<tr>
+		  <td>MovieID</td>
+		  <td><a href="{{ url_for('.show_movie_f_id',movie_id = rate_info.movie_id) }}">{{ rate_info.movie_id }}</a></td>
+		</tr>
+		<tr>
+		  <td>Movie title</td>
+		  <td><a href="{{ url_for('.show_movie_f_id',movie_id = rate_info.movie_id) }}">{{ movie_title }}</a></td>
+		</tr>
+		<tr>
+		  <td>Rate score</td>
+		  <td>{{ rate_info.rate_score }}</td>
+		</tr>
+		<tr>
+		  <td>Rate time</td>
+		  <td>{{ rate_info.rate_time }}</td>
+		</tr>	
+    </table>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}

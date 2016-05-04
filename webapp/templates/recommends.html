@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+  <div class="table-responsive">
+    <h3>The recommend result for the <a href="{{ url_for('.show_user_f_id',user_id = user_id) }}">User {{ user_id }} :</a></h3>
+    <table class="table table-hover">
+    <thead>
+       <tr><th>MovieID</th><th>Title</th><th>GenreID</th><th>Rec_Score</th><th>Rate_times</th></tr>
+    </thead>
+    <tbody>
+      {% for movie in movies %}
+      <tr>
+        <td><a href="{{ url_for('.show_movie_f_id',movie_id = movie.id) }}">{{ movie.id }}</a></td>
+        <td><a href="{{ url_for('.show_movie_f_id',movie_id = movie.id) }}">{{ movie.title }}</a></td>  
+        <td>{{ movie.genre }} </td> 
+        <td>{{ movie.rec_score }}</td> 
+        <td>{{ movie.rank }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}

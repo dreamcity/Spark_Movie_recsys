@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+  <div class="table-responsive">
+  	<h3>Show the desc info of user {{ user.id }}</h3>
+    <table class="table table-hover">
+    	<tr>
+		  <td>ID</td>
+		  <td>{{ user.id }}</td>
+		</tr>
+		<tr>
+		  <td>Age</td>
+		  <td>{{ user.age }}</td>
+		</tr>
+		<tr>
+		  <td>Gender</td>
+		  <td>{{ user.gender }}</td>
+		</tr>
+		<tr>
+		  <td>Occupation</td>
+		  <td>{{ user.occupation }}</td>
+		</tr>
+		<tr>
+		  <td>RateNums</td>
+		  <td><a href="{{ url_for('.show_u_rela_movies',user_id = user.id,mode = 1) }}">{{ user_pattern.rate_nums }}</td>
+		</tr>
+		<tr>
+		  <td>UNRateNums</td>
+		  <td><a href="{{ url_for('.show_u_rela_movies',user_id = user.id,mode = 0) }}">{{ user_pattern.unrate_nums }}</td>
+		</tr>
+		<tr>
+		  <td>AvgRate</td>
+		  <td>{{ user_pattern.avg_rate }}</td>
+		</tr>
+		<tr>
+		  <td>First rate time</td>
+		  <td>{{ user_pattern.first_rate_time }}</td>
+		</tr>
+		<tr>
+		  <td>Last rate time</td>
+		  <td>{{ user_pattern.last_rate_time }}</td>
+		</tr>
+		<tr>
+		  <td><a href="{{ url_for('.user_recommend',user_id = user.id) }}">Recommend</td>
+		</tr>	
+    </table>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
